@@ -1,0 +1,1 @@
+{"n_estimators": 2000, "learning_rate": 0.17736650753986866, "random_state": 16, "objective": "mae", "num_leaves": 240, "max_depth": 10, "reg_alpha": 75, "reg_lambda": 8}

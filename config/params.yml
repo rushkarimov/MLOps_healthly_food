@@ -1,0 +1,51 @@
+preprocessing:
+  change_type_columns:
+    Price: int
+    Energy_value: int
+    Section: category
+    Category: category
+    Type: category
+    Manufactured: category
+  change_type_columns_test:
+    Price: int
+    Section: category
+    Category: category
+    Type: category
+    Manufactured: category
+  drop_columns: ['id', 'Name', 'Old_price', 'Fats', 'Carbohydrates', 'Squirrels']
+  train_path: ../data/raw/Healthly_food_train.csv
+  unique_values_path: ../data/processed/unique_values.json
+  train_path_proc: ../data/processed/train.csv
+  test_path_proc: ../data/processed/test.csv
+  test_size: 0.25
+  target_column: Energy_value
+  random_state: 16
+
+train:
+  n_trials: 5
+  n_folds: 5
+  random_state: 16
+  target_column: Energy_value
+  model_path: ../models/model_lgb.joblib
+  study_path: ../models/study.joblib
+  metrics_path: ../report/metrics.json
+  params_path: ../report/best_params.json
+
+evaluate:
+  predict_path: ../data/check/Healthly_food_test.csv
+
+endpoints:
+  # Для сохранения в Docker:
+  # train: 'http://fastapi:8000/train'
+  # prediction_input: 'http://fastapi:8000/predict_input'
+  # prediction_from_file: 'http://fastapi:8000/predict'
+
+  # Для теста на ноутбуке:
+  train: 'http://localhost:8000/train'
+  prediction_input: 'http://localhost:8000/predict_input'
+  prediction_from_file: 'http://localhost:8000/predict'
+
+  # Для теста на ноутбуке 2.0, 1-ый порт:
+  # train: 'http://localhost:8001/train'
+  # prediction_input: 'http://localhost:8001/predict_input'
+  # prediction_from_file: 'http://localhost:8001/predict'
